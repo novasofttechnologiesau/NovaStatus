@@ -1,0 +1,12 @@
+[project]
+name = "novastatus"
+version = "0.1.0"
+requires-python = ">=3.13"
+[project.scripts]
+novastatus = "novastatus:main"
+[tool.hatch.build.targets.wheel]
+packages = ["src/novastatus"]
+license = {text = "Apache-2.0"}
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
