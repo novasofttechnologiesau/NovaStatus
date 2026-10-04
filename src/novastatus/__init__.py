@@ -1,10 +1,14 @@
 import sys
 import time
+from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 
 def check(url: str) -> tuple[bool, float, str]:
     start = time.perf_counter()
+    parsed = urlsplit(url)
+    if parsed.scheme not in {"http", "https"} or not parsed.hostname:
+        return False, 0.0, "URL must use http or https and include a hostname"
     try:
         with urlopen(Request(url, method="HEAD"), timeout=8) as response:
             return (
